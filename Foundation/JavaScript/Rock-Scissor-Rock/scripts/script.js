@@ -1,39 +1,57 @@
 
+
 function getHumanChoice(){
-    let human = document.getElementById("playerInput").value
-    console.log(human);
-    return human;
+    let ans = prompt("Human Choice: ");
+    console.log(ans);
+    return ans;
 };
 
 function getComputerChoice(){
     let computer = Math.floor(Math.random() * 3);
-    let choice = ["Rock","Paper","Scissors"];
+    let choice = ["Rock","Paper","Scissor"];
     console.log(choice[computer]);
     return choice[computer];
 }
 
 function playRound(){
-    const humanChoice = getHumanChoice();
-    const computerChoice = getComputerChoice();
+    let humanScore = 0;
+    let turns = 5;
     let outputString = document.getElementById("Output");
-    if(!(computerChoice.toLowerCase() === humanChoice.toLowerCase())){
-        if (humanChoice.toLowerCase() === "rock" && computerChoice.toLowerCase() === "scissor"){
-            outputString.textContent = "Human Wins";
+    while(turns){
+        const humanChoice = getHumanChoice();
+        const computerChoice = getComputerChoice();
+        if(!(computerChoice.toLowerCase() === humanChoice.toLowerCase())){
+            if (humanChoice.toLowerCase() === "rock" && computerChoice.toLowerCase() === "scissor"){
+                outputString.textContent = "Human Wins";
+                humanScore += 1;
+            }
+            else if (humanChoice.toLowerCase() === "paper" && computerChoice.toLowerCase() === "rock"){
+                outputString.textContent = "Human Wins";
+                humanScore += 1;
+            }
+            else if (humanChoice.toLowerCase() === "scissor" && computerChoice.toLowerCase() === "paper"){
+                outputString.textContent = "Human Wins";
+                humanScore += 1;
+            }        
+            else{
+                outputString.textContent = "Computer Wins";
+            }
         }
-        if (humanChoice.toLowerCase() === "paper" && computerChoice.toLowerCase() === "rock"){
-            outputString.textContent = "Human Wins";
-        }
-        if (humanChoice.toLowerCase() === "scissor" && computerChoice.toLowerCase() === "paper"){
-            outputString.textContent = "Human Wins";
-        }        
         else{
-            outputString.textContent = "Computer Wins";
+            outputString.textContent = "Draw";
         }
+        alert(`Your Score:${humanScore}`);
+        turns -= 1;
+    }
+    
+    if (humanScore > 2){
+        outputString.textContent = "Human Wins!!!!!";
     }
     else{
-        outputString.textContent = "Draw";
+        outputString.textContent = "Computer Prevail!!!!!";
     }
-    console.log(outputString);
+
+    
 };
 
 
